@@ -1,8 +1,6 @@
-import dotenv from 'dotenv';
-
+import * as dotenv from 'dotenv';
 import { ServerHTTP } from './servers/http';
 import { ExpressApi } from './api/api';
-import { API } from './api/interfaces';
 
 dotenv.config();
 
@@ -10,7 +8,7 @@ const host = process.env.SERVER_URL || 'http://localhost';
 const port = Number(process.env.PORT || 3030);
 const BASE_URL = `${host}:${port}`;
 
-const api: API = new ExpressApi(BASE_URL);
+const api = new ExpressApi(BASE_URL);
 const httpServer = new ServerHTTP(host, port, api.createServer());
 
 try {
